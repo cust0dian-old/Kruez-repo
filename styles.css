@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+}
+
+.App,
+.Deck,
+.Card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Deck {
+  flex-direction: column;
+}
+.Deck__learnButton {
+  margin-top: 1em;
+}
+
+.Card {
+  min-height: 200px;
+  min-width: 200px;
+}
+.Card--front {
+  background-color: hsl(0, 0%, 96%);
+}
+.Card--back {
+  background-color: hsl(130, 70%, 86%);
+}
