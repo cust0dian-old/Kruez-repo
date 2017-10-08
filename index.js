@@ -3,9 +3,13 @@ const Card = (front, back) => ({
   back,
   render: () => {
     const div = document.createElement('div')
-    div.className = 'Card'
+    div.className = 'Card Card--front'
     div.textContent = front
-    div.onclick = () => (div.textContent = back)
+    div.onclick = () => {
+      div.textContent = back
+      div.classList.remove('Card--front')
+      div.classList.add('Card--back')
+    }
     return div
   },
 })
@@ -15,6 +19,7 @@ const Deck = (cards, learnedCards = []) => ({
   learnedCards,
   render: onDeckUpdate => {
     const div = document.createElement('div')
+    div.className = 'Deck'
 
     const card = cards[0]
     const cardElement = card.render()
@@ -22,6 +27,7 @@ const Deck = (cards, learnedCards = []) => ({
 
     const button = document.createElement('button')
     button.textContent = 'Learn'
+    button.className = 'Deck__learnButton'
     button.onclick = () => {
       const newDeck = learnCard(card, cards, learnedCards)
       onDeckUpdate(newDeck)
@@ -47,6 +53,7 @@ App.prototype.render = function() {
   const container = document.getElementById('app')
 
   const div = document.createElement('div')
+  div.className = 'App'
   const deckElement = this.deck.render(newDeck => {
     this.setDeck(newDeck)
     this.render()
